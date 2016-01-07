@@ -5,6 +5,8 @@
  */
 package client;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author jaanle
@@ -12,9 +14,20 @@ package client;
 public class MainWindow extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        //liitetään ProcessClientImplementation käyttöliittymään
+    	try {
+			pci = new ProcessClientImplementation();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+        
         initComponents();
     }
 
@@ -605,7 +618,7 @@ public class MainWindow extends javax.swing.JFrame {
         proc1Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
         proc1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyor.jpg"))); // NOI18N
+        proc1Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/processor.jpg"))); // NOI18N
         proc1Label.setText("Processor 1");
         proc1Label.setFocusable(false);
         proc1Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -619,7 +632,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         proc2Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyor.jpg"))); // NOI18N
+        proc2Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/processor.jpg"))); // NOI18N
         proc2Label.setText("Processor 2");
         proc2Label.setFocusable(false);
         proc2Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -673,7 +686,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         proc3Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc3Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyor.jpg"))); // NOI18N
+        proc3Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/processor.jpg"))); // NOI18N
         proc3Label.setText("Processor 3");
         proc3Label.setFocusable(false);
         proc3Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1087,6 +1100,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
         // TODO Mitä tehdään kun käyttäjä kirjautuu
+    	pci.inform();
     }//GEN-LAST:event_signInActionPerformed
 
     private void startProcLoad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProcLoad1ActionPerformed
@@ -1204,13 +1218,14 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void openMainWindow() {
+    public static void main(String[] args){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+
+    	try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -1228,14 +1243,20 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow().setVisible(true);
             }
         });
+
     }
 
+    //Käyttöliittymään liittyvä asiakas
+    private ProcessClientImplementation pci;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ProcLoadConvStatus1;
     private javax.swing.JLabel bpump1Label;
