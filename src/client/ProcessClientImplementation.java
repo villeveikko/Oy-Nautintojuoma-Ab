@@ -20,4 +20,5 @@ public class ProcessClientImplementation extends UnicastRemoteObject implements 
 				+ " joka l‰hett‰‰ sen eteenp‰in palvelimelle"
 				+ "\n t‰t‰ voi testata klikkaamalla login-nappulaa");
 	}
+	
 }

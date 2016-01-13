@@ -773,7 +773,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         siloLoadConvStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        siloLoadConvStatus.setText("Running");
+        siloLoadConvStatus.setText("Not Running");
         siloLoadConvStatus.setMaximumSize(new java.awt.Dimension(100, 200));
         siloLoadConvStatus.setMinimumSize(new java.awt.Dimension(100, 20));
         siloLoadConvStatus.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -1096,6 +1096,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void startSiloLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSiloLoadActionPerformed
         // TODO Mitä tehdään, kun siilojen täytön ruuvikuljetin käynnistetään?
+    	siloLoadLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyorinuse.jpg")));
+        siloLoadConvStatus.setText("Running");
+
     }//GEN-LAST:event_startSiloLoadActionPerformed
 
     private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
