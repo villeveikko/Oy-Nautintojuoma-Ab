@@ -1,34 +1,48 @@
 package host;
 
 public class Tank extends Thread{
-  public boolean varattu;
-  public String juomanNimi;
-  public int tilavuus; // litraa, max. 10000 l
+  private boolean varattu;
+  private String juomanNimi;
+  private int tilavuus; // litraa, max. 10000 l
   
-  public boolean getVarattu() {
+  public Tank() {
+    varattu = false;
+    tilavuus = 0;
+  }
+  
+  protected boolean getVarattu() {
     return varattu;
   }
-  public void setVarattu(boolean varattu) {
+  protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
   }
   
-  public String getNimi() {
-    return nimi;
+  protected String getNimi() {
+    return juomanNimi;
   }
-  public void setNimi(String nimi) {
-    this.nimi = nimi;
+  protected void setNimi(String juomanNimi) {
+    this.juomanNimi = juomanNimi;
   }
   
-  public int getTilavuus() {
+  protected int getTilavuus() {
     return tilavuus;
   }
-  public boolean setTilavuus(int tilavuus) {
+  protected boolean setTilavuus(int tilavuus) {
     if (this.tilavuus + tilavuus <= 10000) {
       this.tilavuus = tilavuus;
       return true;
     }
     else {
       return false;
+    }
+  }
+  
+  public void run() {
+    try{
+      Thread.sleep(5000);
+    }
+    catch(InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }
