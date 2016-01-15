@@ -10,30 +10,30 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ProcessImplementation implements Process {
 
-	/**
-	 * Versionumero
-	 */
-	private static final long serialVersionUID = 1L;
+ /**
+  * Versionumero
+  */
+ private static final long serialVersionUID = 1L;
 
-	protected ProcessImplementation() throws RemoteException {
-		super();
-		ProcessServer server = new ProcessServer();
-	}
-	
-	public void reserve(Object o){
-		
-	}
-	
-	public void start(Object o){
-		
-	}
-	
-	public void sendState(ProcessState state){
-		
-	}
-	
-	public void ping(){
-		System.out.println("RMI toimii!");
-	}
+ protected ProcessImplementation() throws RemoteException {
+  super();
+  ProcessServer server = new ProcessServer();
+ }
+ 
+ public void reserve(Object o){
+   
+ }
+ 
+ public void start(Object o){
+  
+ }
+ 
+ public void sendState(ProcessState state){
+  
+ }
+ 
+ public void ping(){
+  System.out.println("RMI toimii!");
+ }
 
 }

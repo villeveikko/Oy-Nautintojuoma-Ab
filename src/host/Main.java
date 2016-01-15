@@ -1,5 +1,10 @@
 package host;
 
+<<<<<<< HEAD
+=======
+import java.net.InetAddress;
+import java.rmi.Naming;
+>>>>>>> origin/master
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;

@@ -1,39 +1,48 @@
 package host;
 
 public class Silo extends Thread{
-  public boolean varattu;
-  public String tyyppi;
-  public int täyttöaste; // kiloa, max. 10000 kg
+  private boolean varattu;
+  private String tyyppi;
+  private int täyttöaste; // kiloa, max. 10000 kg
   
   public Silo() {
     täyttöaste = 0;
     varattu = false;
   }
   
-  public boolean getVarattu() {
+  protected boolean getVarattu() {
     return varattu;
   }
-  public void setVarattu(boolean varattu) {
+  protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
   }
   
-  public String getTyyppi() {
+  protected String getTyyppi() {
     return tyyppi;
   }
-  public void setTyyppi(String tyyppi) {
+  protected void setTyyppi(String tyyppi) {
     this.tyyppi = tyyppi;
   }
   
-  public int getTäyttöaste() {
+  protected int getTäyttöaste() {
     return täyttöaste;
   }
-  public boolean setTäyttöaste(int täyttöaste) {
+  protected boolean setTäyttöaste(int täyttöaste) {
     if (this.täyttöaste + täyttöaste <= 10000) {
       this.täyttöaste = täyttöaste;
       return true;
     }
     else {
       return false;
+    }
+  }
+  
+  public void run() {
+    try{
+      Thread.sleep(5000);
+    }
+    catch(InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }

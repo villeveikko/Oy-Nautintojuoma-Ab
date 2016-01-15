@@ -1,11 +1,11 @@
 package host;
 
 public class Processor extends Thread{
-  public boolean varattu;
-  public int vesi; // litraa, max. 10000 l
-  public int kiinteä; // kiloa, max 2000 kg
-  public int keittoaika; // sekuntia
-  public String käyttäjä;
+  private boolean varattu;
+  private int vesi; // litraa, max. 10000 l
+  private int kiinteä; // kiloa, max 2000 kg
+  private int keittoaika; // sekuntia
+  private String käyttäjä;
   
   public Processor() {
     varattu = false;
@@ -14,17 +14,17 @@ public class Processor extends Thread{
     keittoaika = 20;
   }
   
-   public boolean getVarattu() {
+  protected boolean getVarattu() {
     return varattu;
   }
-  public void setVarattu(boolean varattu) {
+  protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
   }
   
-  public int getVesi() {
+  protected int getVesi() {
     return vesi;
   }
-  public boolean setVesi(int vesi) {
+  protected boolean setVesi(int vesi) {
     if (this.vesi + vesi <= 10000) {
       this.vesi = vesi;
       return true;
@@ -34,10 +34,10 @@ public class Processor extends Thread{
     }
   }
   
-  public int getKiinteä() {
+  protected int getKiinteä() {
     return kiinteä;
   }
-  public boolean setKiinteä(int kiinteä) {
+  protected boolean setKiinteä(int kiinteä) {
     if (this.kiinteä + kiinteä <= 10000) {
       this.kiinteä = kiinteä;
       return true;
@@ -47,17 +47,26 @@ public class Processor extends Thread{
     }
   }
   
-  public int getKeittoaika() {
+  protected int getKeittoaika() {
     return keittoaika;
   }
-  public int getKeittoaikaMs() { // palauttaa keittoajan millisekunteina!
+  protected int getKeittoaikaMs() { // palauttaa keittoajan millisekunteina!
     return keittoaika * 1000; 
   }
   
-  public String getKäyttäjä() {
+  protected String getKäyttäjä() {
     return käyttäjä;
   }
-  public void setKäyttäjä(String käyttäjä) {
+  protected void setKäyttäjä(String käyttäjä) {
     this.käyttäjä = käyttäjä;
+  }
+  
+  public void run() {
+    try{
+      Thread.sleep(5000);
+    }
+    catch(InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
