@@ -1,22 +1,31 @@
 package host;
 
 public class Conveyor extends Thread{
-  public boolean varattu;
-  public int siirtonopeus; // kg/s
+  private boolean varattu;
+  private int siirtonopeus; // kg/s
   
   public Conveyor() {
     varattu = false;
     siirtonopeus = 200;
   }
   
-  public boolean getVarattu() {
+  protected boolean getVarattu() {
     return varattu;
   }
-  public void setVarattu(boolean varattu) {
+  protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
   }
   
-  public int getSiirtonopeus() {
+  protected int getSiirtonopeus() {
     return siirtonopeus;
+  }
+  
+  public void run() {
+    try{
+      Thread.sleep(5000);
+    }
+    catch(InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
