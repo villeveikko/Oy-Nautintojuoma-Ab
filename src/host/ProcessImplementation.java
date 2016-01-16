@@ -20,11 +20,11 @@ public class ProcessImplementation implements Process {
   ProcessServer server = new ProcessServer();
  }
  
- public void reserve(Object o){
+ public void reserve(Object o, String s, String name){
    
  }
  
- public void start(Object o){
+ public void start(Object o, String s, String name){
   
  }
  

@@ -5,7 +5,15 @@
  */
 package client;
 
+import host.ProcessState;
+import host.Processor;
+import host.Conveyor;
+import host.Silo;
+import host.Tank;
+import host.Pump;
+
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,13 +31,17 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //liitet‰‰n ProcessClientImplementation k‰yttˆliittym‰‰n
     	try {
-			pci = new ProcessClientImplementation();
+			pc = new ProcessClientImplementation();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-        
+
+    
         initComponents();
-    }
+
+        
+       
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,6 +155,7 @@ public class MainWindow extends javax.swing.JFrame {
         silo1Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         silo1Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        reserveSilo1.setEnabled(false);
         reserveSilo1.setText("Reserve");
         reserveSilo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +182,7 @@ public class MainWindow extends javax.swing.JFrame {
         silo2Status.setMinimumSize(new java.awt.Dimension(100, 20));
         silo2Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveSilo2.setEnabled(false);
         reserveSilo2.setText("Reserve");
         reserveSilo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +203,7 @@ public class MainWindow extends javax.swing.JFrame {
         silo3Status.setMinimumSize(new java.awt.Dimension(100, 20));
         silo3Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveSilo3.setEnabled(false);
         reserveSilo3.setText("Reserve");
         reserveSilo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +224,7 @@ public class MainWindow extends javax.swing.JFrame {
         silo4Status.setMinimumSize(new java.awt.Dimension(100, 20));
         silo4Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveSilo4.setEnabled(false);
         reserveSilo4.setText("Reserve");
         reserveSilo4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +334,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank1Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank1Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank1.setEnabled(false);
         reserveTank1.setText("Reserve");
         reserveTank1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +355,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank2Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank2Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank2.setEnabled(false);
         reserveTank2.setText("Reserve");
         reserveTank2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,6 +376,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank3Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank3Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank3.setEnabled(false);
         reserveTank3.setText("Reserve");
         reserveTank3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,6 +397,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank4Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank4Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank4.setEnabled(false);
         reserveTank4.setText("Reserve");
         reserveTank4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,6 +418,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank5Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank5Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank5.setEnabled(false);
         reserveTank5.setText("Reserve");
         reserveTank5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +439,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank6Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank6Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank6.setEnabled(false);
         reserveTank6.setText("Reserve");
         reserveTank6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,6 +460,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank7Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank7Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank7.setEnabled(false);
         reserveTank7.setText("Reserve");
         reserveTank7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,6 +481,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank8Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank8Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank8.setEnabled(false);
         reserveTank8.setText("Reserve");
         reserveTank8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,6 +502,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank9Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank9Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank9.setEnabled(false);
         reserveTank9.setText("Reserve");
         reserveTank9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -498,6 +523,7 @@ public class MainWindow extends javax.swing.JFrame {
         tank10Status.setMinimumSize(new java.awt.Dimension(100, 20));
         tank10Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        reserveTank10.setEnabled(false);
         reserveTank10.setText("Reserve");
         reserveTank10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,7 +638,7 @@ public class MainWindow extends javax.swing.JFrame {
         procPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         proc1Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc1Status.setText("Running");
+        proc1Status.setText("Ready");
         proc1Status.setMaximumSize(new java.awt.Dimension(100, 200));
         proc1Status.setMinimumSize(new java.awt.Dimension(100, 20));
         proc1Status.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -624,6 +650,7 @@ public class MainWindow extends javax.swing.JFrame {
         proc1Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         proc1Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        startProc1.setEnabled(false);
         startProc1.setText("Start");
         startProc1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -638,6 +665,7 @@ public class MainWindow extends javax.swing.JFrame {
         proc2Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         proc2Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        reserveProc1.setEnabled(false);
         reserveProc1.setText("Reserve");
         reserveProc1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -645,6 +673,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        reserveProc2.setEnabled(false);
         reserveProc2.setText("Reserve");
         reserveProc2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,6 +681,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        startProc2.setEnabled(false);
         startProc2.setText("Start");
         startProc2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -660,17 +690,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         proc2Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc2Status.setText("Running");
+        proc2Status.setText("Ready");
         proc2Status.setMaximumSize(new java.awt.Dimension(100, 200));
         proc2Status.setMinimumSize(new java.awt.Dimension(100, 20));
         proc2Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
         proc3Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        proc3Status.setText("Running");
+        proc3Status.setText("Ready");
         proc3Status.setMaximumSize(new java.awt.Dimension(100, 200));
         proc3Status.setMinimumSize(new java.awt.Dimension(100, 20));
         proc3Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        startProc3.setEnabled(false);
         startProc3.setText("Start");
         startProc3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -678,6 +709,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        reserveProc3.setEnabled(false);
         reserveProc3.setText("Reserve");
         reserveProc3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -758,6 +790,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        
         siloLoadLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         siloLoadLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyor.jpg"))); // NOI18N
         siloLoadLabel.setText("Silo loading");
@@ -765,6 +798,7 @@ public class MainWindow extends javax.swing.JFrame {
         siloLoadLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         siloLoadLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        startSiloLoad.setEnabled(false);
         startSiloLoad.setText("Start");
         startSiloLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -773,7 +807,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         siloLoadConvStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        siloLoadConvStatus.setText("Not Running");
+        siloLoadConvStatus.setText("Ready");
         siloLoadConvStatus.setMaximumSize(new java.awt.Dimension(100, 200));
         siloLoadConvStatus.setMinimumSize(new java.awt.Dimension(100, 20));
         siloLoadConvStatus.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -805,7 +839,7 @@ public class MainWindow extends javax.swing.JFrame {
         siloLoadConvStatus.getAccessibleContext().setAccessibleName("SiloLoadConvStatus");
 
         pump1Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pump1Status.setText("Running");
+        pump1Status.setText("Ready");
         pump1Status.setMaximumSize(new java.awt.Dimension(100, 200));
         pump1Status.setMinimumSize(new java.awt.Dimension(100, 20));
         pump1Status.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -817,6 +851,7 @@ public class MainWindow extends javax.swing.JFrame {
         pump1Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pump1Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        startPump1.setEnabled(false);
         startPump1.setText("Start");
         startPump1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -832,11 +867,12 @@ public class MainWindow extends javax.swing.JFrame {
         pump2Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         pump2Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pump2Status.setText("Running");
+        pump2Status.setText("Ready");
         pump2Status.setMaximumSize(new java.awt.Dimension(100, 200));
         pump2Status.setMinimumSize(new java.awt.Dimension(100, 20));
         pump2Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        startPump2.setEnabled(false);
         startPump2.setText("Start");
         startPump2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -881,11 +917,12 @@ public class MainWindow extends javax.swing.JFrame {
         bpump1Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         bpump1Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpump1Status.setText("Running");
+        bpump1Status.setText("Ready");
         bpump1Status.setMaximumSize(new java.awt.Dimension(100, 200));
         bpump1Status.setMinimumSize(new java.awt.Dimension(100, 20));
         bpump1Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        startBpump1.setEnabled(false);
         startBpump1.setText("Start");
         startBpump1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -901,11 +938,12 @@ public class MainWindow extends javax.swing.JFrame {
         bpump2Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         bpump2Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpump2Status.setText("Running");
+        bpump2Status.setText("Ready");
         bpump2Status.setMaximumSize(new java.awt.Dimension(100, 200));
         bpump2Status.setMinimumSize(new java.awt.Dimension(100, 20));
         bpump2Status.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        startBpump2.setEnabled(false);
         startBpump2.setText("Start");
         startBpump2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -948,6 +986,7 @@ public class MainWindow extends javax.swing.JFrame {
         procLoadLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         procLoadLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        startProcLoad1.setEnabled(false);
         startProcLoad1.setText("Start");
         startProcLoad1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -956,11 +995,12 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         ProcLoadConvStatus1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ProcLoadConvStatus1.setText("Running");
+        ProcLoadConvStatus1.setText("Ready");
         ProcLoadConvStatus1.setMaximumSize(new java.awt.Dimension(100, 200));
         ProcLoadConvStatus1.setMinimumSize(new java.awt.Dimension(100, 20));
         ProcLoadConvStatus1.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        startProcLoad2.setEnabled(false);
         startProcLoad2.setText("Start");
         startProcLoad2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -969,7 +1009,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         procLoadConvStatus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        procLoadConvStatus2.setText("Running");
+        procLoadConvStatus2.setText("Ready");
         procLoadConvStatus2.setMaximumSize(new java.awt.Dimension(100, 200));
         procLoadConvStatus2.setMinimumSize(new java.awt.Dimension(100, 20));
         procLoadConvStatus2.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -1094,130 +1134,363 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startSiloLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSiloLoadActionPerformed
-        // TODO Mit‰ tehd‰‰n, kun siilojen t‰ytˆn ruuvikuljetin k‰ynnistet‰‰n?
-    	siloLoadLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/conveyorinuse.jpg")));
-        siloLoadConvStatus.setText("Running");
+    private void startSiloLoadActionPerformed(java.awt.event.ActionEvent evt) {
+    	pc.start(conveyor, "siloLoader");
+    	
 
-    }//GEN-LAST:event_startSiloLoadActionPerformed
+    }
 
-    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
+    private void signInActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun k‰ytt‰j‰ kirjautuu
-    	pci.inform();
-    }//GEN-LAST:event_signInActionPerformed
+    	String name = userName.getText();
+    	pc.setName(name);
+    	
+        ArrayList<javax.swing.JToggleButton> buttonList = new ArrayList<javax.swing.JToggleButton>();
+        buttonList.add(startSiloLoad);
+        buttonList.add(startProcLoad1);
+        buttonList.add(startProcLoad2);
+        buttonList.add(reserveSilo1);
+        buttonList.add(reserveSilo2);
+        buttonList.add(reserveSilo3);
+        buttonList.add(reserveSilo4);
+        buttonList.add(reserveProc1);
+        buttonList.add(reserveProc2);
+        buttonList.add(reserveProc3);
+        buttonList.add(startProc1);
+        buttonList.add(startProc2);
+        buttonList.add(startProc3);
+        buttonList.add(startPump1);
+        buttonList.add(startPump2);
+        buttonList.add(startBpump1);
+        buttonList.add(startBpump2);
+        buttonList.add(reserveTank1);
+        buttonList.add(reserveTank2);
+        buttonList.add(reserveTank3);
+        buttonList.add(reserveTank4);
+        buttonList.add(reserveTank5);
+        buttonList.add(reserveTank6);
+        buttonList.add(reserveTank7);
+        buttonList.add(reserveTank8);
+        buttonList.add(reserveTank9);
+        buttonList.add(reserveTank10);
+        
+    	for(javax.swing.JToggleButton button : buttonList){
+    		setButton(button, true);
+    	}   
+    }
 
-    private void startProcLoad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProcLoad1ActionPerformed
+    private void startProcLoad1ActionPerformed(java.awt.event.ActionEvent evt) {        
+    	// TODO Mit‰ tehd‰‰n kun keittimen t‰ytˆn ruuvikuljetin 1 k‰ynnistet‰‰n
+    	pc.start(conveyor, "procLoader1");
+    	
+    }
+
+    private void startProcLoad2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keittimen t‰ytˆn ruuvikuljetin 1 k‰ynnistet‰‰n
-    }//GEN-LAST:event_startProcLoad1ActionPerformed
+    	pc.start(conveyor, "procLoader2");
+    	
 
-    private void startProcLoad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProcLoad2ActionPerformed
-        // TODO Mit‰ tehd‰‰n kun keittimen t‰ytˆn ruuvikuljetin 1 k‰ynnistet‰‰n
-    }//GEN-LAST:event_startProcLoad2ActionPerformed
+    }
 
-    private void reserveSilo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSilo1ActionPerformed
+    private void reserveSilo1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun siilo1 varataan?
-    }//GEN-LAST:event_reserveSilo1ActionPerformed
+    	pc.reserve(silo, "silo1");
+    	
+    }
 
-    private void reserveSilo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSilo2ActionPerformed
+    private void reserveSilo2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun siilo2 varataan?
-    }//GEN-LAST:event_reserveSilo2ActionPerformed
+    	pc.reserve(silo, "silo2");
+    	
+    }
 
-    private void reserveSilo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSilo3ActionPerformed
+    private void reserveSilo3ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun siilo3 varataan?
-    }//GEN-LAST:event_reserveSilo3ActionPerformed
+    	pc.reserve(silo, "silo3");
 
-    private void reserveSilo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSilo4ActionPerformed
+    }
+
+    private void reserveSilo4ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun siilo4 varataan?
-    }//GEN-LAST:event_reserveSilo4ActionPerformed
+    	pc.reserve(silo, "silo4");
 
-    private void reserveProc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveProc1ActionPerformed
+    }
+
+    private void reserveProc1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin1 varataan?
-    }//GEN-LAST:event_reserveProc1ActionPerformed
+    	pc.reserve(processor, "processor1");
+    	proc1User.setText(pc.getName());
 
-    private void startProc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProc1ActionPerformed
+    }
+
+    private void startProc1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin1 k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startProc1ActionPerformed
+    	pc.start(processor, "processor1");
 
-    private void reserveProc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveProc2ActionPerformed
+    }
+
+    private void reserveProc2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin2 varataan?
-    }//GEN-LAST:event_reserveProc2ActionPerformed
+    	pc.reserve(processor, "processor2");
+    	proc2User.setText(pc.getName());
 
-    private void startProc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProc2ActionPerformed
+    }
+
+    private void startProc2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin2 k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startProc2ActionPerformed
+    	pc.start(processor, "processor2");
 
-    private void reserveProc3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveProc3ActionPerformed
+    }
+
+    private void reserveProc3ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin3 varataan?
-    }//GEN-LAST:event_reserveProc3ActionPerformed
+    	pc.reserve(processor, "processor3");
+    	proc3User.setText(pc.getName());
 
-    private void startProc3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProc3ActionPerformed
+    }
+
+    private void startProc3ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keitin3 k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startProc3ActionPerformed
+    	pc.start(processor, "processor3");
 
-    private void startPump1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPump1ActionPerformed
+    }
+
+    private void startPump1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun pumppu1 k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startPump1ActionPerformed
+    	pc.start(pump, "pump1");
 
-    private void startPump2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPump2ActionPerformed
+    }
+
+    private void startPump2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun pumppu2 k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startPump2ActionPerformed
+    	pc.start(pump, "pump2");
 
-    private void startBpump1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBpump1ActionPerformed
+    }
+
+    private void startBpump1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun pumppu1 pullotukseen k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startBpump1ActionPerformed
+    	pc.start(pump, "bottlePump1");
 
-    private void startBpump2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBpump2ActionPerformed
+    }
+
+    private void startBpump2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun pumppu2 pullotukseen k‰ynnistet‰‰n?
-    }//GEN-LAST:event_startBpump2ActionPerformed
+    	pc.start(pump, "bottlePump2");
 
-    private void reserveTank1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank1ActionPerformed
+    }
+
+    private void reserveTank1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ1 varataan?
-    }//GEN-LAST:event_reserveTank1ActionPerformed
+    	pc.reserve(tank, "tank1");
+    }
 
-    private void reserveTank2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank2ActionPerformed
+    private void reserveTank2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ2 varataan?
-    }//GEN-LAST:event_reserveTank2ActionPerformed
+    	pc.reserve(tank, "tank2");
+    }
 
-    private void reserveTank3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank3ActionPerformed
+    private void reserveTank3ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ3 varataan?
-    }//GEN-LAST:event_reserveTank3ActionPerformed
+    	pc.reserve(tank, "tank3");
+    }
 
-    private void reserveTank4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank4ActionPerformed
+    private void reserveTank4ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ4 varataan?
-    }//GEN-LAST:event_reserveTank4ActionPerformed
+    	pc.reserve(tank, "tank4");
+    }
 
-    private void reserveTank5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank5ActionPerformed
+    private void reserveTank5ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ5 varataan?
-    }//GEN-LAST:event_reserveTank5ActionPerformed
+    	pc.reserve(tank, "tank5");
+    }
 
-    private void reserveTank6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank6ActionPerformed
+    private void reserveTank6ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ6 varataan?
-    }//GEN-LAST:event_reserveTank6ActionPerformed
+    	pc.reserve(tank, "tank6");
+    }
 
-    private void reserveTank7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank7ActionPerformed
+    private void reserveTank7ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ7 varataan?
-    }//GEN-LAST:event_reserveTank7ActionPerformed
+    	pc.reserve(tank, "tank7");
+    }
 
-    private void reserveTank8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank8ActionPerformed
+    private void reserveTank8ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ8 varataan?
-    }//GEN-LAST:event_reserveTank8ActionPerformed
+    	pc.reserve(tank, "tank8");
+    }
 
-    private void reserveTank9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank9ActionPerformed
+    private void reserveTank9ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ9 varataan?
-    }//GEN-LAST:event_reserveTank9ActionPerformed
+    	pc.reserve(tank, "tank9");
+    }
 
-    private void reserveTank10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveTank10ActionPerformed
+    private void reserveTank10ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun s‰iliˆ10 varataan?
-    }//GEN-LAST:event_reserveTank10ActionPerformed
+    	pc.reserve(tank, "tank10");
+    }
 
-    private void procLoadAmount2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procLoadAmount2ActionPerformed
+    private void procLoadAmount2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_procLoadAmount2ActionPerformed
+    }
 
-    private void procLoadAmount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procLoadAmount1ActionPerformed
+    private void procLoadAmount1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_procLoadAmount1ActionPerformed
+    }
 
+    private void setButton(javax.swing.JToggleButton button, boolean b){
+    	button.setEnabled(b);
+    }
+    
+    private void setStatus(javax.swing.JLabel label, boolean b){
+    	if(b){
+    		label.setText("Running");
+    	} else {
+    		label.setText("Ready");
+    	}
+    }
+    
+    private void update(ProcessState state){
+    	//true: varattu, false: vapaa
+    	
+    	if(state.isSiloLoader()){
+    		setStatus(siloLoadConvStatus, true);
+    		setButton(startSiloLoad, false);
+    	} else {
+    		setStatus(siloLoadConvStatus, false);
+    		setButton(startSiloLoad, true);
+		};
+		if(state.isSilo1()){
+			setButton(reserveSilo1, true);
+		} else { 
+			setButton(reserveSilo1, false);
+		};
+		if(state.isSilo2()){
+			setButton(reserveSilo2, true);
+		} else {
+			setButton(reserveSilo2, false);
+		}
+		if(state.isSilo3()){
+			setButton(reserveSilo3, true);
+		}
+		else {
+			setButton(reserveSilo3, false);
+		}
+		if(state.isSilo4()){
+			setButton(reserveSilo4, true);
+		}
+		else {
+			setButton(reserveSilo4, false);
+		}
+
+    	if(state.isProcLoader1()){
+    		setStatus(ProcLoadConvStatus1, true);
+			setButton(startProcLoad1, false);
+    	}
+		else {
+			setStatus(ProcLoadConvStatus1, false);
+			setButton(startProcLoad1, true);
+		}
+    	if(state.isProcLoader2()){
+    		setStatus(procLoadConvStatus2, true);
+			setButton(startProcLoad2, false);
+    	}
+		else {
+			setStatus(procLoadConvStatus2, false);
+			setButton(startProcLoad2, true);
+		}
+    	
+    	//TODO Miten hoidetaan processorien varaukset?
+    	if(state.isProc1()){
+    		setStatus(proc1Status, true);
+			setButton(startProc1, false);
+    	}
+		else {
+			setStatus(proc1Status, false);
+			setButton(startProc1, true);
+		}
+    	if(state.isProc2()){
+    		setStatus(proc2Status, true);
+			setButton(startProc2, false);
+    	}
+		else {
+			setStatus(proc2Status, false);
+			setButton(startProc2, true);
+		}
+    	if(state.isProc3()){
+    		setStatus(proc3Status, true);
+			setButton(startProc3, false);
+    	}
+		else {
+			setStatus(proc3Status, false);
+			setButton(startProc3, true);
+			
+		}
+    	
+    	if(state.isPump1()){
+    		setStatus(pump1Status, true);
+			setButton(startPump1, false);
+    	}
+    	else{
+    		setStatus(pump1Status, false);
+			setButton(startPump1, true);
+    	}
+    	if(state.isPump2()){
+    		setStatus(pump2Status, true);
+			setButton(startPump2, false);
+    	}
+    	else{
+    		setStatus(pump2Status, false);
+			setButton(startPump2, true);
+    	}
+    	
+    	if(state.isTank1()) setButton(reserveTank1, false);
+    	else setButton(reserveTank1, false);
+    	
+    	if(state.isTank2())	setButton(reserveTank2, false);
+    	else setButton(reserveTank2, false);
+    	
+    	if(state.isTank3()) setButton(reserveTank3, false);
+    	else setButton(reserveTank3, false);
+    	
+    	if(state.isTank4()) setButton(reserveTank4, false);
+    	else setButton(reserveTank4, false);
+    	
+    	if(state.isTank5()) setButton(reserveTank5, false);
+    	else setButton(reserveTank5, false);
+    	
+    	if(state.isTank6()) setButton(reserveTank6, false);
+    	else setButton(reserveTank6, false);
+    	
+    	if(state.isTank7()) setButton(reserveTank7, false);
+    	else setButton(reserveTank7, false);
+    	
+    	if(state.isTank8()) setButton(reserveTank8, false);
+    	else setButton(reserveTank8, false);
+    	
+    	if(state.isTank9()) setButton(reserveTank9, false);
+    	else setButton(reserveTank9, false);
+    	
+    	if(state.isTank10()) setButton(reserveTank10, false);
+    	else setButton(reserveTank10, false);
+    	
+    	if(state.isBottlePump1()){
+    		setStatus(bpump1Status, true);
+			setButton(startBpump1, false);
+    	}
+    	else{
+    		setStatus(bpump1Status, false);
+			setButton(startBpump1, true);
+    	}
+    	if(state.isBottlePump1()){
+    		setStatus(bpump2Status, true);
+			setButton(startBpump2, false);
+    	}
+    	else{
+    		setStatus(bpump2Status, false);
+			setButton(startBpump2, true);
+    	}
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1251,6 +1524,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	
                 new MainWindow().setVisible(true);
             }
         });
@@ -1258,8 +1532,16 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     //K‰yttˆliittym‰‰n liittyv‰ asiakas
-    private ProcessClientImplementation pci;
-    
+    private ProcessClientImplementation pc;
+    //Prosessin tilaolio
+    private ProcessState state;
+    //Olioita joita tarvitaan varaus- ja k‰ynnistyskutsuissa
+    private Processor processor;
+    private Silo silo;
+    private Conveyor conveyor;
+    private Pump pump;
+    private Tank tank;
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ProcLoadConvStatus1;
     private javax.swing.JLabel bpump1Label;

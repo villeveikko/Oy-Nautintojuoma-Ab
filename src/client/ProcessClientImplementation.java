@@ -20,26 +20,46 @@ public class ProcessClientImplementation extends UnicastRemoteObject implements 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Process process;
+	private String name;
+
 	
 	protected ProcessClientImplementation() throws RemoteException {
 		super();
 		try {
 			// if (System.getSecurityManager() == null) System.setSecurityManager(new RMISecurityManager());
             Registry registry = LocateRegistry.getRegistry(null); //tässä null = localhost
-			//String address = "rmi://" + "localhost" + "/process";
 			process = (Process) registry.lookup("Process");
 			ping();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void reserve(Object o){
-		
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+    	System.out.println("Logged in as " + name);
 	}
 	
-	public void start(Object o){
-		
+	public void reserve(Object o, String s){
+		try {
+			process.reserve(o, s, name);
+		} catch (Exception e) {
+			System.out.println("Error with RMI-call");
+			e.printStackTrace();
+		}
+	}
+	
+	public void start(Object o, String s){
+		try {
+			process.start(o, s, name);
+		} catch (Exception e) {
+			System.out.println("Error with RMI-call");
+			e.printStackTrace();
+		}
 	}
 	
 	public ProcessState getState(){
