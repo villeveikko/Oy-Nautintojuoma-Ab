@@ -3,6 +3,7 @@ package host;
 public class Conveyor extends Thread{
   private boolean varattu;
   private int siirtonopeus; // kg/s
+  private String käyttäjä;
   
   public Conveyor() {
     varattu = false;
@@ -18,6 +19,13 @@ public class Conveyor extends Thread{
   
   protected int getSiirtonopeus() {
     return siirtonopeus;
+  }
+  
+  protected String getKäyttäjä() {
+    return käyttäjä;
+  }
+  protected void setKäyttäjä(String käyttäjä) {
+    this.käyttäjä = käyttäjä;
   }
   
   public void run() {
