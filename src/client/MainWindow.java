@@ -15,6 +15,8 @@ import host.Pump;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author jaanle
@@ -1145,36 +1147,13 @@ public class MainWindow extends javax.swing.JFrame {
     	String name = userName.getText();
     	pc.setName(name);
     	
-        ArrayList<javax.swing.JToggleButton> buttonList = new ArrayList<javax.swing.JToggleButton>();
-        buttonList.add(startSiloLoad);
-        buttonList.add(startProcLoad1);
-        buttonList.add(startProcLoad2);
-        buttonList.add(reserveSilo1);
-        buttonList.add(reserveSilo2);
-        buttonList.add(reserveSilo3);
-        buttonList.add(reserveSilo4);
-        buttonList.add(reserveProc1);
-        buttonList.add(reserveProc2);
-        buttonList.add(reserveProc3);
-        buttonList.add(startProc1);
-        buttonList.add(startProc2);
-        buttonList.add(startProc3);
-        buttonList.add(startPump1);
-        buttonList.add(startPump2);
-        buttonList.add(startBpump1);
-        buttonList.add(startBpump2);
-        buttonList.add(reserveTank1);
-        buttonList.add(reserveTank2);
-        buttonList.add(reserveTank3);
-        buttonList.add(reserveTank4);
-        buttonList.add(reserveTank5);
-        buttonList.add(reserveTank6);
-        buttonList.add(reserveTank7);
-        buttonList.add(reserveTank8);
-        buttonList.add(reserveTank9);
-        buttonList.add(reserveTank10);
+        JToggleButton[] buttonList = new JToggleButton[]{startSiloLoad, startProcLoad1, startProcLoad2,
+        		reserveSilo1, reserveSilo2, reserveSilo3, reserveSilo4, reserveProc1, reserveProc2,
+        		reserveProc3, startPump1, startPump2, startBpump1, startBpump2, reserveTank1, reserveTank2,
+        		reserveTank3, reserveTank4, reserveTank5, reserveTank6, reserveTank7, reserveTank8,
+        		reserveTank9, reserveTank10};
         
-    	for(javax.swing.JToggleButton button : buttonList){
+    	for(JToggleButton button : buttonList){
     		setButton(button, true);
     	}   
     }
@@ -1337,7 +1316,7 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void setButton(javax.swing.JToggleButton button, boolean b){
+    private void setButton(JToggleButton button, boolean b){
     	button.setEnabled(b);
     }
     
@@ -1526,6 +1505,23 @@ public class MainWindow extends javax.swing.JFrame {
             public void run() {
             	
                 new MainWindow().setVisible(true);
+                 
+                
+                 //Tämä voisi olla metodi, joka kysyy prosessin tilaa serveriltä tasaisin väliajoin
+                 ProcessState state = new ProcessState();
+                 Thread t = new Thread(){
+                	public void run(){
+                		try {
+							while(true){
+								Thread.sleep(3000);
+								System.out.println("LOL!");
+							}
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+                	}
+                 };
+                t.start();
             }
         });
 

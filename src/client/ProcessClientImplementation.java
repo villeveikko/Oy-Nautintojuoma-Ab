@@ -2,6 +2,7 @@ package client;
 
 import host.ProcessState;
 import host.Process;
+import host.Pump;
 
 import java.net.InetAddress;
 import java.net.MalformedURLException;
@@ -59,6 +60,20 @@ public class ProcessClientImplementation extends UnicastRemoteObject implements 
 		} catch (Exception e) {
 			System.out.println("Error with RMI-call");
 			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * t‰t‰ tarvitaan keittimen t‰ytt‰v‰‰ conveyoria varten
+	 */
+	public void start(Object o, int procLoaderNo, int amount){
+
+		
+		try {
+		process.start(o, "procLoader" + procLoaderNo, name, amount);
+		} catch (Exception e){
+			System.out.println("Error with RMI-call");
+			e.printStackTrace();		
 		}
 	}
 	
