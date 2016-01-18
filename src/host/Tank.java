@@ -1,9 +1,11 @@
+
 package host;
 
 public class Tank extends Thread{
   private boolean varattu;
   private String juomanNimi;
   private int tilavuus; // litraa, max. 10000 l
+  private String käyttäjä;
   
   public Tank() {
     varattu = false;
@@ -35,6 +37,13 @@ public class Tank extends Thread{
     else {
       return false;
     }
+  }
+  
+  protected String getKäyttäjä() {
+    return käyttäjä;
+  }
+  protected void setKäyttäjä(String käyttäjä) {
+    this.käyttäjä = käyttäjä;
   }
   
   public void run() {

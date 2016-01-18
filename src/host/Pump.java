@@ -1,8 +1,10 @@
+
 package host;
 
 public class Pump extends Thread{
   private boolean varattu;
   private int siirtonopeus; // l/s
+  private String käyttäjä;
   
   public Pump() {
     varattu = false;
@@ -18,6 +20,13 @@ public class Pump extends Thread{
   
   protected int getSiirtonopeus() {
     return siirtonopeus;
+  }
+  
+  protected String getKäyttäjä() {
+    return käyttäjä;
+  }
+  protected void setKäyttäjä(String käyttäjä) {
+    this.käyttäjä = käyttäjä;
   }
   
   public void run() {

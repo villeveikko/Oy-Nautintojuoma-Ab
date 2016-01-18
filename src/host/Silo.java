@@ -1,9 +1,11 @@
+
 package host;
 
 public class Silo extends Thread{
   private boolean varattu;
   private String tyyppi;
   private int täyttöaste; // kiloa, max. 10000 kg
+  private String käyttäjä;
   
   public Silo() {
     täyttöaste = 0;
@@ -35,6 +37,13 @@ public class Silo extends Thread{
     else {
       return false;
     }
+  }
+  
+  protected String getKäyttäjä() {
+    return käyttäjä;
+  }
+  protected void setKäyttäjä(String käyttäjä) {
+    this.käyttäjä = käyttäjä;
   }
   
   public void run() {
