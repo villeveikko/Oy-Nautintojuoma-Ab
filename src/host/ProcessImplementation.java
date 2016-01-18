@@ -17,29 +17,33 @@ public class ProcessImplementation implements Process {
  private static final long serialVersionUID = 1L;
  private ProcessServer server;
 
- protected ProcessImplementation() throws RemoteException {
-  super();
-  ProcessServer server = new ProcessServer();
+ public ProcessImplementation(ProcessServer server) {
+	 super();
+	 this.server = server;
  }
  
- public void reserve(Object laite, String laitteenNimi, String asiakas){ 
+ public void reserve(Object laite, String laitteenNimi, String asiakas) throws RemoteException { 
    try {
+	 System.out.println("Trying to reserve " + laitteenNimi + " for " + asiakas);
      server.reserve(laite, laitteenNimi, asiakas);
    } catch (Exception e) {
+	 e.printStackTrace();
      System.out.println("Oho!");
    }
  }
  
- public void start(Object laite, String laitteenNimi, String asiakas){
+ public void start(Object laite, String laitteenNimi, String asiakas) throws RemoteException {
   try {
+	 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas);
      server.start(laite, laitteenNimi, asiakas);
    } catch (Exception e) {
-     System.out.println("Oho!");
+     e.printStackTrace();
+	 System.out.println("Oho!");
    }
  }
  
- public void sendState(ProcessState state){
-  
+ public ProcessState getState() throws RemoteException {
+	 return server.getState();
  }
  
  public void ping(){

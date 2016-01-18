@@ -1156,6 +1156,7 @@ public class MainWindow extends javax.swing.JFrame {
     	for(JToggleButton button : buttonList){
     		setButton(button, true);
     	}   
+    	updateThread();
     }
 
     private void startProcLoad1ActionPerformed(java.awt.event.ActionEvent evt) {        
@@ -1328,7 +1329,14 @@ public class MainWindow extends javax.swing.JFrame {
     	}
     }
     
-    private void update(ProcessState state){
+    private void update(){
+    	ProcessState state = new ProcessState();
+		try {
+			state = pc.getState();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+    
     	//true: varattu, false: vapaa
     	
     	if(state.isSiloLoader()){
@@ -1470,6 +1478,26 @@ public class MainWindow extends javax.swing.JFrame {
     	}
     }
     
+    /*
+     * päivittää ikkunan 3 sekunnin välein
+     */
+    public void updateThread(){
+        Thread t = new Thread(){
+        	public void run(){
+        		try {
+					while(true){
+						Thread.sleep(3000);
+						System.out.println("nyt updatetaan!");
+						update();
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+        	}
+         };
+        t.start();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1503,34 +1531,15 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	
-                new MainWindow().setVisible(true);
-                 
-                
-                 //Tämä voisi olla metodi, joka kysyy prosessin tilaa serveriltä tasaisin väliajoin
-                 ProcessState state = new ProcessState();
-                 Thread t = new Thread(){
-                	public void run(){
-                		try {
-							while(true){
-								Thread.sleep(3000);
-								System.out.println("LOL!");
-							}
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-                	}
-                 };
-                t.start();
+            	new MainWindow().setVisible(true);
             }
         });
 
+        
     }
 
     //Käyttöliittymään liittyvä asiakas
     private ProcessClientImplementation pc;
-    //Prosessin tilaolio
-    private ProcessState state;
     //Olioita joita tarvitaan varaus- ja käynnistyskutsuissa
     private Processor processor;
     private Silo silo;

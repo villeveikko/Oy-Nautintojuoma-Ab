@@ -77,8 +77,8 @@ public class ProcessClientImplementation extends UnicastRemoteObject implements 
 		}
 	}
 	
-	public ProcessState getState(){
-		
+	public ProcessState getState() throws RemoteException{
+		return process.getState();
 	}
 	
 	public void ping(){

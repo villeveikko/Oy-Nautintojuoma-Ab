@@ -31,7 +31,9 @@ public class Conveyor extends Thread{
   
   public void run() {
     try{
+      System.out.println("Conveyor Started");
       Thread.sleep(5000);
+      System.out.println("Conveyor finished");
     }
     catch(InterruptedException e) {
       e.printStackTrace();

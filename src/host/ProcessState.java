@@ -1,10 +1,15 @@
 package host;
+
+import java.io.Serializable;
+
 /*
  * Kuvaa prosessin tilaa. False tarkoittaa, että laite on vapaa, true tarkoittaa varattua.
  */
 
-public class ProcessState {
+public class ProcessState implements Serializable {
 
+	
+	private static final long serialVersionUID = 1L;
 	private boolean siloLoader;
 	private boolean silo1;
 	private boolean silo2;

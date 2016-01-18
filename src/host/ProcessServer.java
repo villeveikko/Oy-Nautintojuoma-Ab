@@ -59,6 +59,7 @@ public class ProcessServer {
   this.tank10 = new Tank();
   this.bottlePump1 = new Pump();
   this.bottlePump2 = new Pump();
+  System.out.println("Server started");
  }
  
  
@@ -160,6 +161,16 @@ public class ProcessServer {
              // itkuparkumetodi(); ?
            }
          }
+         if (laitteenNimi.equals("proc3")) {
+             if (!proc3.getVarattu()) {
+               state.setProc3(true);
+               proc3.setVarattu(true);
+               proc3.setKäyttäjä(asiakas);
+             }
+             else {
+               // itkuparkumetodi(); ?
+             }
+           }
          if (laitteenNimi.equals("pump1")) {
            if (!pump1.getVarattu()) {
              state.setPump1(true);
@@ -343,8 +354,12 @@ public class ProcessServer {
        System.out.println("Väärä käyttäjä!");
      }  
    }
+   
+   /*
+    * TÄNNE TEIN MUUTOKSEN getAsiakas -> getVarattu
+    */
    if (laitteenNimi.equals("siloLoader")) {
-     if ((siloLoader.getKäyttäjä()).equals(asiakas)) {
+     if ((!siloLoader.getVarattu())) {
        siloLoader.run();
      }
      else {
@@ -499,4 +514,3 @@ public class ProcessServer {
 
  
 }
->>>>>>> 6cbd896800b11118b22617a4d353f8b2f562c7ea
