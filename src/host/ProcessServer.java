@@ -70,7 +70,7 @@ public class ProcessServer {
  /*
   * Tehtaan komponenttien (Silo, Conveyor, Processor, Pump, Tank) varaamismetodi. 
   */
- public void reserve(Object laite, String laitteenNimi, String asiakas) throws Exception {
+ public void reserve(Object laite, String laitteenNimi, String asiakas) {
        if (laitteenNimi.equals("silo1")) {
          if (!silo1.getVarattu()) {
            state.setSilo1(true);
@@ -321,7 +321,7 @@ public class ProcessServer {
  /*
   * Tehtaan komponenttien (Silo, Conveyor, Processor, Pump, Tank) käynnistysmetodit. 
   */
- public void start(Object laite, String laitteenNimi, String asiakas) throws Exception {
+ public void start(Object laite, String laitteenNimi, String asiakas) {
    if (laitteenNimi.equals("silo1")) {
      if ((silo1.getKäyttäjä()).equals(asiakas)) {
        silo1.run();
@@ -360,7 +360,8 @@ public class ProcessServer {
     */
    if (laitteenNimi.equals("siloLoader")) {
      if ((!siloLoader.getVarattu())) {
-       siloLoader.run();
+    	 
+    	 siloLoader.run();
      }
      else {
        System.out.println("Väärä käyttäjä!");
@@ -511,6 +512,32 @@ public class ProcessServer {
      }  
    }
  }
+ 
+ 
+ //Esimerkki switch-rakenteesta. Tästä puuttuu vielä amount-parametrin käyttö. Se puuttuu myös conveyor-luokasta.
+ //Pitääkö tehdä class ProcLoader extends conveyor?
+ public void start(Object laite, String laitteenNimi, String asiakas, int amount) {
+	 switch(laitteenNimi){
+	 case "procLoader1":
+		 if (!procLoader1.getVarattu()) {
+             state.setProcLoader1(true);
+             procLoader1.setVarattu(true);
+             procLoader1.setKäyttäjä(asiakas);
+             procLoader1.start();
+           }
+		 break;
+		 
+	 case "procLoader2":
+		 if (!procLoader1.getVarattu()) {
+             state.setProcLoader1(true);
+             procLoader1.setVarattu(true);
+             procLoader1.setKäyttäjä(asiakas);
+             procLoader1.start();
+           }
+		 break;		 
+	 }
+ }
+ 
 
  
 }

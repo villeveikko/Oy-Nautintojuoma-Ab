@@ -23,9 +23,7 @@ import javax.swing.JToggleButton;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	/**
      * Creates new form MainWindow
@@ -37,12 +35,8 @@ public class MainWindow extends javax.swing.JFrame {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
-    
         initComponents();
 
-        
-       
         }
 
     /**
@@ -1139,7 +1133,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void startSiloLoadActionPerformed(java.awt.event.ActionEvent evt) {
     	pc.start(conveyor, "siloLoader");
     	
-
     }
 
     private void signInActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1156,20 +1149,21 @@ public class MainWindow extends javax.swing.JFrame {
     	for(JToggleButton button : buttonList){
     		setButton(button, true);
     	}   
-    	updateThread();
+    	updaterThread();
     }
 
     private void startProcLoad1ActionPerformed(java.awt.event.ActionEvent evt) {        
     	// TODO Mit‰ tehd‰‰n kun keittimen t‰ytˆn ruuvikuljetin 1 k‰ynnistet‰‰n
-    	pc.start(conveyor, "procLoader1");
+    	int amount = procLoadAmount1ActionPerformed(evt);
+    	pc.start(conveyor, "procLoader1", amount);
     	
     }
 
     private void startProcLoad2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO Mit‰ tehd‰‰n kun keittimen t‰ytˆn ruuvikuljetin 1 k‰ynnistet‰‰n
-    	pc.start(conveyor, "procLoader2");
+    	int amount = procLoadAmount2ActionPerformed(evt);
+    	pc.start(conveyor, "procLoader2", amount);
     	
-
     }
 
     private void reserveSilo1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1309,18 +1303,30 @@ public class MainWindow extends javax.swing.JFrame {
     	pc.reserve(tank, "tank10");
     }
 
-    private void procLoadAmount2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private int procLoadAmount2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    	return Integer.parseInt(procLoadAmount2.getText());
     }
 
-    private void procLoadAmount1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private int procLoadAmount1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    	return Integer.parseInt(procLoadAmount1.getText());
     }
 
+    /**
+     * Asettaa painikkeen painettavaksi tai pois
+     * @param button painike
+     * @param b true, jos halutaan painike aktiiviseksi, muuten false
+     */
     private void setButton(JToggleButton button, boolean b){
     	button.setEnabled(b);
     }
     
+    /**
+     * Asettaa laitteelle statustekstin
+     * @param label muutettava tekstikentt‰
+     * @param b true, jos laite on k‰ytˆss‰, muuten false
+     */
     private void setStatus(javax.swing.JLabel label, boolean b){
     	if(b){
     		label.setText("Running");
@@ -1329,14 +1335,12 @@ public class MainWindow extends javax.swing.JFrame {
     	}
     }
     
+    /**
+     * P‰ivitt‰‰ painikkeet ja statustekstit palvelimelta saadun ProcessState-olion mukaisesti
+     */
     private void update(){
-    	ProcessState state = new ProcessState();
-		try {
-			state = pc.getState();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-    
+    	ProcessState state = pc.getState();
+	    
     	//true: varattu, false: vapaa
     	
     	if(state.isSiloLoader()){
@@ -1478,10 +1482,10 @@ public class MainWindow extends javax.swing.JFrame {
     	}
     }
     
-    /*
-     * p‰ivitt‰‰ ikkunan 3 sekunnin v‰lein
+    /**
+     * P‰ivitt‰‰ ikkunan 3 sekunnin v‰lein
      */
-    public void updateThread(){
+    public void updaterThread(){
         Thread t = new Thread(){
         	public void run(){
         		try {
@@ -1497,6 +1501,9 @@ public class MainWindow extends javax.swing.JFrame {
          };
         t.start();
     }
+    
+    
+    
     
     /**
      * @param args the command line arguments

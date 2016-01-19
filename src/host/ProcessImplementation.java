@@ -22,24 +22,28 @@ public class ProcessImplementation implements Process {
 	 this.server = server;
  }
  
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
  public void reserve(Object laite, String laitteenNimi, String asiakas) throws RemoteException { 
-   try {
+
 	 System.out.println("Trying to reserve " + laitteenNimi + " for " + asiakas);
      server.reserve(laite, laitteenNimi, asiakas);
-   } catch (Exception e) {
-	 e.printStackTrace();
-     System.out.println("Oho!");
-   }
+
  }
  
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
  public void start(Object laite, String laitteenNimi, String asiakas) throws RemoteException {
-  try {
+ 
 	 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas);
      server.start(laite, laitteenNimi, asiakas);
-   } catch (Exception e) {
-     e.printStackTrace();
-	 System.out.println("Oho!");
-   }
+   
+ }
+ 
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
+ public void start(Object laite, String laitteenNimi, String asiakas, int amount) throws RemoteException {
+
+		 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas + ", amount: " + amount);
+	     server.start(laite, laitteenNimi, asiakas, amount);
+	
  }
  
  public ProcessState getState() throws RemoteException {
