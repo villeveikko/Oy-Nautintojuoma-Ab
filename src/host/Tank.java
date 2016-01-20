@@ -1,7 +1,9 @@
 
 package host;
 
-public class Tank extends Thread{
+import java.io.Serializable;
+
+public class Tank extends Thread implements Serializable{
   private boolean varattu;
   private String juomanNimi;
   private int tilavuus; // litraa, max. 10000 l

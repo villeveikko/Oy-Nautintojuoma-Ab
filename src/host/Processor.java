@@ -1,6 +1,8 @@
 package host;
 
-public class Processor extends Thread{
+import java.io.Serializable;
+
+public class Processor extends Thread implements Serializable{
   private boolean varattu;
   private int vesi; // litraa, max. 10000 l
   private int kiinteä; // kiloa, max 2000 kg

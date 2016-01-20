@@ -10,13 +10,39 @@ public class ProcessState implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	private boolean siloLoader;
-	private boolean silo1;
-	private boolean silo2;
-	private boolean silo3;
-	private boolean silo4;
-	private boolean procLoader1;
-	private boolean procLoader2;
+	private Conveyor siloLoader;
+	private Silo silo1;
+	private Silo silo2;
+	private Silo silo3;
+	private Silo silo4;
+	private Conveyor procLoader1;
+	private Conveyor procLoader2;
+	private Processor proc1;
+	private Processor proc2;
+	private Processor proc3;
+	private Pump pump1;
+	private Pump pump2;
+	private Tank tank1;
+	private Tank tank2;
+	private Tank tank3;
+	private Tank tank4;
+	private Tank tank5;
+	private Tank tank6;
+	private Tank tank7;
+	private Tank tank8;
+	private Tank tank9;
+	private Tank tank10;
+	private Pump bottlePump1;
+	private Pump bottlePump2;
+
+	/*
+	 * private Conveyor siloLoader;
+	private Silo silo1;
+	private Silo silo2;
+	private Silo silo3;
+	private Silo silo4;
+	private Conveyor procLoader1;
+	private Conveyor procLoader2;
 	private boolean proc1;
 	private boolean proc2;
 	private boolean proc3;
@@ -34,223 +60,200 @@ public class ProcessState implements Serializable {
 	private boolean tank10;
 	private boolean bottlePump1;
 	private boolean bottlePump2;
-
-	public ProcessState(){
-		siloLoader = false;
-		silo1 = false;
-		silo2 = false;
-		silo3 = false;
-		silo4 = false;
-		procLoader1 = false;
-		procLoader2 = false;
-		proc1 = false;
-		proc2 = false;
-		proc3 = false;
-		pump1 = false;
-		pump2 = false;
-		tank1 = false;
-		tank2 = false;
-		tank3 = false;
-		tank4 = false;
-		tank5 = false;
-		tank6 = false;
-		tank7 = false;
-		tank8 = false;
-		tank9 = false;
-		tank10 = false;
-		bottlePump1 = false;
-		bottlePump2 = false;
+*/
+	
+	public ProcessState(Conveyor siloLoader, Silo silo1, Silo silo2, Silo silo3, Silo silo4,
+						Conveyor procLoader1, Conveyor procLoader2, Processor proc1, Processor proc2,
+						Processor proc3, Pump pump1, Pump pump2, Tank tank1, Tank tank2, Tank tank3,
+						Tank tank4, Tank tank5, Tank tank6, Tank tank7, Tank tank8, Tank tank9,
+						Tank tank10, Pump bottlePump1, Pump bottlePump2) {
+	
+		this.siloLoader = siloLoader; 
+		this.silo1 = silo1;
+		this.silo2 = silo2;
+		this.silo3 = silo3;
+		this.silo4 = silo4;
+		this.procLoader1 = procLoader1;
+		this.procLoader2 = procLoader2;
+		this.proc1 = proc1;
+		this.proc2 = proc2;
+		this.proc3 = proc3;
+		this.pump1 = pump1;
+		this.pump2 = pump2;
+		this.tank1 = tank1;
+		this.tank2 = tank2;
+		this.tank3 = tank3;
+		this.tank4 = tank4;
+		this.tank5 = tank5;
+		this.tank6 = tank6;
+		this.tank7 = tank7;
+		this.tank8 = tank8;
+		this.tank9 = tank9;
+		this.tank10 = tank10;
+		this.bottlePump1 = bottlePump1;
+		this.bottlePump2 = bottlePump2;
+	
+		
+	
 	}
 	
+	
+	 
 	public boolean isSiloLoader() {
-		return siloLoader;
+		return siloLoader.getVarattu();
 	}
 
 	public boolean isSilo1() {
-		return silo1;
+		return silo1.getVarattu();
 	}
 
 	public boolean isSilo2() {
-		return silo2;
+		return silo2.getVarattu();
 	}
 
 	public boolean isSilo3() {
-		return silo3;
+		return silo3.getVarattu();
 	}
 
 	public boolean isSilo4() {
-		return silo4;
+		return silo4.getVarattu();
 	}
 
 	public boolean isProcLoader1() {
-		return procLoader1;
+		return procLoader1.getVarattu();
 	}
 
 	public boolean isProcLoader2() {
-		return procLoader2;
+		return procLoader2.getVarattu();
 	}
 
 	public boolean isProc1() {
-		return proc1;
+		return proc1.getVarattu();
 	}
 
 	public boolean isProc2() {
-		return proc2;
+		return proc2.getVarattu();
 	}
 
 	public boolean isProc3() {
-		return proc3;
+		return proc3.getVarattu();
 	}
 
 	public boolean isPump1() {
-		return pump1;
+		return pump1.getVarattu();
 	}
 
 	public boolean isPump2() {
-		return pump2;
+		return pump2.getVarattu();
 	}
 
 	public boolean isTank1() {
-		return tank1;
+		return tank1.getVarattu();
 	}
 
 	public boolean isTank2() {
-		return tank2;
+		return tank2.getVarattu();
 	}
 
 	public boolean isTank3() {
-		return tank3;
+		return tank3.getVarattu();
 	}
 
 	public boolean isTank4() {
-		return tank4;
+		return tank4.getVarattu();
 	}
 
 	public boolean isTank5() {
-		return tank5;
+		return tank5.getVarattu();
 	}
 
 	public boolean isTank6() {
-		return tank6;
+		return tank6.getVarattu();
 	}
 
 	public boolean isTank7() {
-		return tank7;
+		return tank7.getVarattu();
 	}
 
 	public boolean isTank8() {
-		return tank8;
+		return tank8.getVarattu();
 	}
 
 	public boolean isTank9() {
-		return tank9;
+		return tank9.getVarattu();
 	}
 
 	public boolean isTank10() {
-		return tank10;
+		return tank10.getVarattu();
 	}
 
 	public boolean isBottlePump1() {
-		return bottlePump1;
+		return bottlePump1.getVarattu();
 	}
 
 	public boolean isBottlePump2() {
-		return bottlePump2;
+		return bottlePump2.getVarattu();
 	}
 
-	public void setSiloLoader(boolean siloLoader) {
-		this.siloLoader = siloLoader;
+	
+	
+	public String getProc1User(){
+		return proc1.getKäyttäjä();
 	}
-
-	public void setSilo1(boolean silo1) {
-		this.silo1 = silo1;
+	
+	public String getProc2User(){
+		return proc2.getKäyttäjä();
 	}
-
-	public void setSilo2(boolean silo2) {
-		this.silo2 = silo2;
+	
+	public String getProc3User(){
+		return proc3.getKäyttäjä();
 	}
-
-	public void setSilo3(boolean silo3) {
-		this.silo3 = silo3;
+	
+	public int getSilo1Amount(){
+		return silo1.getTäyttöaste();
 	}
-
-	public void setSilo4(boolean silo4) {
-		this.silo4 = silo4;
+	
+	public int getSilo2Amount(){
+		return silo2.getTäyttöaste();
 	}
-
-	public void setProcLoader1(boolean procLoader1) {
-		this.procLoader1 = procLoader1;
+	
+	public int getSilo3Amount(){
+		return silo3.getTäyttöaste();
 	}
-
-	public void setProcLoader2(boolean procLoader2) {
-		this.procLoader2 = procLoader2;
+	
+	public int getSilo4Amount(){
+		return silo4.getTäyttöaste();
 	}
-
-	public void setProc1(boolean proc1) {
-		this.proc1 = proc1;
+	
+	public int getTank1Amount(){
+		return tank1.getTilavuus();
 	}
-
-	public void setProc2(boolean proc2) {
-		this.proc2 = proc2;
+	public int getTank2Amount(){
+		return tank2.getTilavuus();
 	}
-
-	public void setProc3(boolean proc3) {
-		this.proc3 = proc3;
+	public int getTank3Amount(){
+		return tank3.getTilavuus();
 	}
-
-	public void setPump1(boolean pump1) {
-		this.pump1 = pump1;
+	public int getTank4Amount(){
+		return tank4.getTilavuus();
 	}
-
-	public void setPump2(boolean pump2) {
-		this.pump2 = pump2;
+	public int getTank5Amount(){
+		return tank5.getTilavuus();
 	}
-
-	public void setTank1(boolean tank1) {
-		this.tank1 = tank1;
+	public int getTank6Amount(){
+		return tank6.getTilavuus();
 	}
-
-	public void setTank2(boolean tank2) {
-		this.tank2 = tank2;
+	public int getTank7Amount(){
+		return tank7.getTilavuus();
 	}
-
-	public void setTank3(boolean tank3) {
-		this.tank3 = tank3;
+	public int getTank8Amount(){
+		return tank8.getTilavuus();
 	}
-
-	public void setTank4(boolean tank4) {
-		this.tank4 = tank4;
+	public int getTank9Amount(){
+		return tank9.getTilavuus();
 	}
-
-	public void setTank5(boolean tank5) {
-		this.tank5 = tank5;
+	public int getTank10Amount(){
+		return tank10.getTilavuus();
 	}
-
-	public void setTank6(boolean tank6) {
-		this.tank6 = tank6;
-	}
-
-	public void setTank7(boolean tank7) {
-		this.tank7 = tank7;
-	}
-
-	public void setTank8(boolean tank8) {
-		this.tank8 = tank8;
-	}
-
-	public void setTank9(boolean tank9) {
-		this.tank9 = tank9;
-	}
-
-	public void setTank10(boolean tank10) {
-		this.tank10 = tank10;
-	}
-
-	public void setBottlePump1(boolean bottlePump1) {
-		this.bottlePump1 = bottlePump1;
-	}
-
-	public void setBottlePump2(boolean bottlePump2) {
-		this.bottlePump2 = bottlePump2;
-	}
+	
 }

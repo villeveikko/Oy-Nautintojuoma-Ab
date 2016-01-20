@@ -34,7 +34,6 @@ public class ProcessServer {
  
  public ProcessServer() {
   super();
-  this.state = new ProcessState();
   this.siloLoader = new Conveyor();
   this.silo1 = new Silo();
   this.silo2 = new Silo();
@@ -59,6 +58,10 @@ public class ProcessServer {
   this.tank10 = new Tank();
   this.bottlePump1 = new Pump();
   this.bottlePump2 = new Pump();
+  this.state = new ProcessState(siloLoader, silo1, silo2, silo3, silo4, procLoader1, procLoader2, proc1, proc2,
+								proc3, pump1, pump2, tank1, tank2, tank3, tank4, tank5, tank6, tank7, tank8, tank9,
+								tank10, bottlePump1, bottlePump2);
+
   System.out.println("Server started");
  }
  
@@ -73,7 +76,6 @@ public class ProcessServer {
  public void reserve(Object laite, String laitteenNimi, String asiakas) {
        if (laitteenNimi.equals("silo1")) {
          if (!silo1.getVarattu()) {
-           state.setSilo1(true);
            silo1.setVarattu(true);
            silo1.setKäyttäjä(asiakas);
          }
@@ -83,7 +85,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("silo2")) {
          if (!silo2.getVarattu()) {
-           state.setSilo1(true);
            silo2.setVarattu(true);
            silo2.setKäyttäjä(asiakas);
          }
@@ -93,7 +94,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("silo3")) {
          if (!silo3.getVarattu()) {
-           state.setSilo1(true);
            silo3.setVarattu(true);
            silo3.setKäyttäjä(asiakas);
          }
@@ -103,7 +103,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("silo4")) {
          if (!silo4.getVarattu()) {
-           state.setSilo1(true);
            silo4.setVarattu(true);
            silo4.setKäyttäjä(asiakas);
          }
@@ -113,7 +112,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("siloLoader")) {
          if (!siloLoader.getVarattu()) {
-           state.setSiloLoader(true);
            siloLoader.setVarattu(true);
            siloLoader.setKäyttäjä(asiakas);
          }
@@ -123,7 +121,6 @@ public class ProcessServer {
        }
          if (laitteenNimi.equals("procLoader1")) {
            if (!procLoader1.getVarattu()) {
-             state.setProcLoader1(true);
              procLoader1.setVarattu(true);
              procLoader1.setKäyttäjä(asiakas);
            }
@@ -133,7 +130,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("procLoader2")) {
            if (!procLoader2.getVarattu()) {
-             state.setProcLoader2(true);
              procLoader2.setVarattu(true);
              procLoader2.setKäyttäjä(asiakas);
            }
@@ -143,7 +139,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("proc1")) {
            if (!proc1.getVarattu()) {
-             state.setProc1(true);
              proc1.setVarattu(true);
              proc1.setKäyttäjä(asiakas);
            }
@@ -153,7 +148,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("proc2")) {
            if (!proc2.getVarattu()) {
-             state.setProc2(true);
              proc2.setVarattu(true);
              proc2.setKäyttäjä(asiakas);
            }
@@ -163,7 +157,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("proc3")) {
              if (!proc3.getVarattu()) {
-               state.setProc3(true);
                proc3.setVarattu(true);
                proc3.setKäyttäjä(asiakas);
              }
@@ -173,7 +166,6 @@ public class ProcessServer {
            }
          if (laitteenNimi.equals("pump1")) {
            if (!pump1.getVarattu()) {
-             state.setPump1(true);
              pump1.setVarattu(true);
              pump1.setKäyttäjä(asiakas);
            }
@@ -183,7 +175,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("pump2")) {
            if (!pump2.getVarattu()) {
-             state.setPump2(true);
              pump2.setVarattu(true);
              pump2.setKäyttäjä(asiakas);
            }
@@ -193,7 +184,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("bottlePump1")) {
            if (!bottlePump1.getVarattu()) {
-             state.setBottlePump1(true);
              bottlePump1.setVarattu(true);
              bottlePump1.setKäyttäjä(asiakas);
            }
@@ -203,7 +193,6 @@ public class ProcessServer {
          }
          if (laitteenNimi.equals("bottlePump2")) {
            if (!bottlePump2.getVarattu()) {
-             state.setBottlePump2(true);
              bottlePump2.setVarattu(true);
              bottlePump2.setKäyttäjä(asiakas);
            }
@@ -213,7 +202,6 @@ public class ProcessServer {
          }
        if (laitteenNimi.equals("tank1")) {
          if (!tank1.getVarattu()) {
-             state.setTank1(true);
              tank1.setVarattu(true);
              tank1.setKäyttäjä(asiakas);
            }
@@ -223,7 +211,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank2")) {
          if (!tank2.getVarattu()) {
-             state.setTank2(true);
              tank2.setVarattu(true);
              tank2.setKäyttäjä(asiakas);
            }
@@ -233,7 +220,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank3")) {
          if (!tank3.getVarattu()) {
-             state.setTank3(true);
              tank3.setVarattu(true);
              tank3.setKäyttäjä(asiakas);
            }
@@ -243,7 +229,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank4")) {
          if (!tank4.getVarattu()) {
-             state.setTank4(true);
              tank4.setVarattu(true);
              tank4.setKäyttäjä(asiakas);
            }
@@ -253,7 +238,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank5")) {
          if (!tank5.getVarattu()) {
-             state.setTank5(true);
              tank5.setVarattu(true);
              tank5.setKäyttäjä(asiakas);
            }
@@ -263,7 +247,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank6")) {
          if (!tank6.getVarattu()) {
-             state.setTank6(true);
              tank6.setVarattu(true);
              tank6.setKäyttäjä(asiakas);
            }
@@ -273,7 +256,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank7")) {
          if (!tank7.getVarattu()) {
-             state.setTank7(true);
              tank7.setVarattu(true);
              tank7.setKäyttäjä(asiakas);
            }
@@ -283,7 +265,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank8")) {
          if (!tank8.getVarattu()) {
-             state.setTank8(true);
              tank8.setVarattu(true);
              tank8.setKäyttäjä(asiakas);
            }
@@ -293,7 +274,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank9")) {
          if (!tank9.getVarattu()) {
-             state.setTank9(true);
              tank9.setVarattu(true);
              tank9.setKäyttäjä(asiakas);
            }
@@ -303,7 +283,6 @@ public class ProcessServer {
        }
        if (laitteenNimi.equals("tank10")) {
          if (!tank10.getVarattu()) {
-             state.setTank10(true);
              tank10.setVarattu(true);
              tank10.setKäyttäjä(asiakas);
            }
@@ -356,11 +335,13 @@ public class ProcessServer {
    }
    
    /*
+    * Testaussyistä
     * TÄNNE TEIN MUUTOKSEN getAsiakas -> getVarattu
+    * 					ja lisäsin setVarattu.
     */
    if (laitteenNimi.equals("siloLoader")) {
-     if ((!siloLoader.getVarattu())) {
-    	 
+	   if ((!siloLoader.getVarattu())) {
+    	 siloLoader.setVarattu(true);
     	 siloLoader.run();
      }
      else {
@@ -520,7 +501,6 @@ public class ProcessServer {
 	 switch(laitteenNimi){
 	 case "procLoader1":
 		 if (!procLoader1.getVarattu()) {
-             state.setProcLoader1(true);
              procLoader1.setVarattu(true);
              procLoader1.setKäyttäjä(asiakas);
              procLoader1.start();
@@ -529,7 +509,6 @@ public class ProcessServer {
 		 
 	 case "procLoader2":
 		 if (!procLoader1.getVarattu()) {
-             state.setProcLoader1(true);
              procLoader1.setVarattu(true);
              procLoader1.setKäyttäjä(asiakas);
              procLoader1.start();

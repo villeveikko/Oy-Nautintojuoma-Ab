@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -1131,8 +1132,8 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startSiloLoadActionPerformed(java.awt.event.ActionEvent evt) {
+
     	pc.start(conveyor, "siloLoader");
-    	
     }
 
     private void signInActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1304,15 +1305,22 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private int procLoadAmount2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    	return Integer.parseInt(procLoadAmount2.getText());
+    	try{
+    		return Integer.parseInt(procLoadAmount2.getText());
+    	} catch (NumberFormatException e){
+    		
+    	}
+    	return 0;
     }
 
     private int procLoadAmount1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    	return Integer.parseInt(procLoadAmount1.getText());
+    	try{
+    		return Integer.parseInt(procLoadAmount1.getText());
+    	} catch (NumberFormatException e){
+    		
+    	}
+    	return 0;
     }
-
     /**
      * Asettaa painikkeen painettavaksi tai pois
      * @param button painike
@@ -1330,9 +1338,21 @@ public class MainWindow extends javax.swing.JFrame {
     private void setStatus(javax.swing.JLabel label, boolean b){
     	if(b){
     		label.setText("Running");
+    		
+    		/*
+    		 *NO nyt on outo juttu. Käyttöliittymässä vilahtaa teksti running silloin kun 
+    		 *laite on jo saanut käytyä loppuun. Kuitenkin ao. rivi sanoo Labelissa lukevan
+    		 *running vaikka sillä hetkellä oikeasti lukisikin ready...
+    		 */
+    		System.out.println(label.getText());
+    		
     	} else {
     		label.setText("Ready");
     	}
+    }
+    
+    private void setName(javax.swing.JLabel label, String name){
+    	label.setText(name);
     }
     
     /**
@@ -1340,7 +1360,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void update(){
     	ProcessState state = pc.getState();
-	    
+
     	//true: varattu, false: vapaa
     	
     	if(state.isSiloLoader()){
@@ -1394,27 +1414,32 @@ public class MainWindow extends javax.swing.JFrame {
     	if(state.isProc1()){
     		setStatus(proc1Status, true);
 			setButton(startProc1, false);
+			setName(proc1User, state.getProc1User());
     	}
 		else {
 			setStatus(proc1Status, false);
 			setButton(startProc1, true);
+			setName(proc1User, "User");
 		}
     	if(state.isProc2()){
     		setStatus(proc2Status, true);
 			setButton(startProc2, false);
+			setName(proc2User, state.getProc2User());
     	}
 		else {
 			setStatus(proc2Status, false);
 			setButton(startProc2, true);
+			setName(proc2User, "User");
 		}
     	if(state.isProc3()){
     		setStatus(proc3Status, true);
 			setButton(startProc3, false);
+			setName(proc3User, state.getProc3User());
     	}
 		else {
 			setStatus(proc3Status, false);
 			setButton(startProc3, true);
-			
+			setName(proc3User, "User");
 		}
     	
     	if(state.isPump1()){
@@ -1480,6 +1505,8 @@ public class MainWindow extends javax.swing.JFrame {
     		setStatus(bpump2Status, false);
 			setButton(startBpump2, true);
     	}
+    	
+    	
     }
     
     /**
@@ -1490,8 +1517,7 @@ public class MainWindow extends javax.swing.JFrame {
         	public void run(){
         		try {
 					while(true){
-						Thread.sleep(3000);
-						System.out.println("nyt updatetaan!");
+						Thread.sleep(1000);
 						update();
 					}
 				} catch (InterruptedException e) {
