@@ -31,9 +31,12 @@ public class Pump extends Thread implements Serializable{
     this.k‰ytt‰j‰ = k‰ytt‰j‰;
   }
   
-  public void run() {
+  public void run(int m‰‰r‰) {
     try{
-      Thread.sleep(5000);
+      System.out.println("Pump Started");
+      Thread.sleep((m‰‰r‰/this.siirtonopeus) * 1000);
+      varattu = false;
+      System.out.println("Pump finished");
     }
     catch(InterruptedException e) {
       e.printStackTrace();

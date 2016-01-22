@@ -31,9 +31,19 @@ public class Tank extends Thread implements Serializable{
   protected int getTilavuus() {
     return tilavuus;
   }
-  protected boolean setTilavuus(int tilavuus) {
-    if (this.tilavuus + tilavuus <= 10000) {
-      this.tilavuus = tilavuus;
+  
+  protected boolean lisää(int juoma) {
+    if (juoma <= 10000) {
+      this.tilavuus = juoma;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  protected boolean vähennä(int juoma) {
+    if (this.tilavuus - juoma >= 0) {
+      this.tilavuus -= juoma;
       return true;
     }
     else {

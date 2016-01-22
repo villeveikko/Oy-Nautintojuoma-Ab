@@ -31,10 +31,10 @@ public class Conveyor extends Thread implements Serializable{
     this.k‰ytt‰j‰ = k‰ytt‰j‰;
   }
   
-  public void run() {
+  public void run(int m‰‰r‰) {
     try{
       System.out.println("Conveyor Started");
-      Thread.sleep(5000);
+      Thread.sleep((m‰‰r‰/this.siirtonopeus) * 1000);
       varattu = false;
       System.out.println("Conveyor finished");
     }

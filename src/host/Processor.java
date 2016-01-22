@@ -6,6 +6,7 @@ public class Processor extends Thread implements Serializable{
   private boolean varattu;
   private int vesi; // litraa, max. 10000 l
   private int kiinteä; // kiloa, max 2000 kg
+  private int juoma; // litraa, max. 10000 l, KORVAA VEDEN VALMISTUSPROSESSIN YHTEYDESSÄ
   private int keittoaika; // sekuntia
   private String käyttäjä;
   
@@ -13,6 +14,7 @@ public class Processor extends Thread implements Serializable{
     varattu = false;
     vesi = 0;
     kiinteä = 0;
+    juoma = 0;
     keittoaika = 20;
   }
   
@@ -40,8 +42,21 @@ public class Processor extends Thread implements Serializable{
     return kiinteä;
   }
   protected boolean setKiinteä(int kiinteä) {
-    if (this.kiinteä + kiinteä <= 10000) {
+    if (kiinteä <= 2000) {
       this.kiinteä = kiinteä;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
+  protected int getJuoma() {
+    return juoma;
+  }
+  protected boolean setJuoma(int juoma) {
+    if ((this.juoma + juoma <= 10000) && (this.vesi == 0) && (this.kiinteä == 0)) {
+      this.juoma = juoma;
       return true;
     }
     else {
@@ -65,7 +80,11 @@ public class Processor extends Thread implements Serializable{
   
   public void run() {
     try{
-      Thread.sleep(5000);
+      Thread.sleep(this.getKeittoaikaMs());
+      int temp = this.getVesi();
+      this.setVesi(0);
+      this.setKiinteä(0);
+      this.setJuoma(temp);
     }
     catch(InterruptedException e) {
       e.printStackTrace();

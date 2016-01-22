@@ -31,9 +31,18 @@ public class Silo extends Thread implements Serializable{
   protected int getTäyttöaste() {
     return täyttöaste;
   }
-  protected boolean setTäyttöaste(int täyttöaste) {
+  protected boolean lisääTäyttöaste(int täyttöaste) {
     if (this.täyttöaste + täyttöaste <= 10000) {
-      this.täyttöaste = täyttöaste;
+      this.täyttöaste += täyttöaste;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  protected boolean vähennäTäyttöaste(int täyttöaste) {
+    if (this.täyttöaste - täyttöaste >= 0) {
+      this.täyttöaste -= täyttöaste;
       return true;
     }
     else {
