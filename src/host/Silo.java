@@ -1,6 +1,9 @@
+
 package host;
 
-public class Silo extends Thread{
+import java.io.Serializable;
+
+public class Silo extends Thread implements Serializable{
   private boolean varattu;
   private String tyyppi;
   private int täyttöaste; // kiloa, max. 10000 kg

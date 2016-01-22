@@ -1,3 +1,4 @@
+
 package host;
 
 import java.rmi.RemoteException;
@@ -16,29 +17,37 @@ public class ProcessImplementation implements Process {
  private static final long serialVersionUID = 1L;
  private ProcessServer server;
 
- protected ProcessImplementation() throws RemoteException {
-  super();
-  ProcessServer server = new ProcessServer();
+ public ProcessImplementation(ProcessServer server) {
+	 super();
+	 this.server = server;
  }
  
- public void reserve(Object laite, String laitteenNimi, String asiakas){ 
-   try {
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
+ public void reserve(Object laite, String laitteenNimi, String asiakas) throws RemoteException { 
+
+	 System.out.println("Trying to reserve " + laitteenNimi + " for " + asiakas);
      server.reserve(laite, laitteenNimi, asiakas);
-   } catch (Exception e) {
-     System.out.println("Oho!");
-   }
+
  }
  
- public void start(Object laite, String laitteenNimi, String asiakas){
-  try {
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
+ public void start(Object laite, String laitteenNimi, String asiakas) throws RemoteException {
+ 
+	 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas);
      server.start(laite, laitteenNimi, asiakas);
-   } catch (Exception e) {
-     System.out.println("Oho!");
-   }
+   
  }
  
- public void sendState(ProcessState state){
-  
+ //Poistin catch-lohkon. näin poikkeus nousee asiakkaalle asti
+ public void start(Object laite, String laitteenNimi, String asiakas, int amount) throws RemoteException {
+
+		 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas + ", amount: " + amount);
+	     server.start(laite, laitteenNimi, asiakas, amount);
+	
+ }
+ 
+ public ProcessState getState() throws RemoteException {
+	 return server.getState();
  }
  
  public void ping(){

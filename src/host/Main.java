@@ -1,7 +1,5 @@
 package host;
 
-import java.net.InetAddress;
-import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,7 +11,7 @@ public class Main {
              System.setSecurityManager(new SecurityManager());
           }*/
            try {
-               Process process = new ProcessImplementation();
+               Process process = new ProcessImplementation(new ProcessServer());
                Process stub =
                    (Process) UnicastRemoteObject.exportObject(process, 0);
                Registry registry = LocateRegistry.createRegistry(1099);

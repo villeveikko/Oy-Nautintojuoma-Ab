@@ -1,6 +1,9 @@
+
 package host;
 
-public class Pump extends Thread{
+import java.io.Serializable;
+
+public class Pump extends Thread implements Serializable{
   private boolean varattu;
   private int siirtonopeus; // l/s
   private String käyttäjä;

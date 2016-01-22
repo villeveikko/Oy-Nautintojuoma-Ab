@@ -1,6 +1,9 @@
+
 package host;
 
-public class Conveyor extends Thread{
+import java.io.Serializable;
+
+public class Conveyor extends Thread implements Serializable{
   private boolean varattu;
   private int siirtonopeus; // kg/s
   private String käyttäjä;
@@ -30,7 +33,10 @@ public class Conveyor extends Thread{
   
   public void run() {
     try{
+      System.out.println("Conveyor Started");
       Thread.sleep(5000);
+      varattu = false;
+      System.out.println("Conveyor finished");
     }
     catch(InterruptedException e) {
       e.printStackTrace();
