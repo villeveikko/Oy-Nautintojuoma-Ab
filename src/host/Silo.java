@@ -4,28 +4,35 @@ package host;
 import java.io.Serializable;
 
 public class Silo extends Thread implements Serializable{
+  /*
+   * Luokan Silo parametrit:
+   * varattu: Ilmaisee, onko kyseessä oleva laite varattu. (true = varattu, false = vapaa)
+   * täyttöaste: Ilmaisee, kuinka paljon raaka-ainetta laitteessa on kilogrammoissa. (max. 10000 kg)
+   * käyttäjä: Ilmaisee laitteen senhetkisen käyttäjän.
+   */
   private boolean varattu;
-  private String tyyppi;
-  private int täyttöaste; // kiloa, max. 10000 kg
+  private int täyttöaste; 
   private String käyttäjä;
   
+  /*
+   * Luokan Silo konstruktori:
+   * Määrittää laitteen aloitusarvot (oletuksena tyhjä).
+   */
   public Silo() {
     täyttöaste = 0;
     varattu = false;
+    käyttäjä = "";
   }
   
+  /*
+   * Luokan Pump getterit ja setterit:
+   * HUOM! täyttöasteen set-metodi ollaan korvattu lisää- ja vähennä-metodilla.
+   */
   protected boolean getVarattu() {
     return varattu;
   }
   protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
-  }
-  
-  protected String getTyyppi() {
-    return tyyppi;
-  }
-  protected void setTyyppi(String tyyppi) {
-    this.tyyppi = tyyppi;
   }
   
   protected int getTäyttöaste() {
@@ -55,8 +62,11 @@ public class Silo extends Thread implements Serializable{
   }
   protected void setKäyttäjä(String käyttäjä) {
     this.käyttäjä = käyttäjä;
+    System.out.println("Silo reserved for " + käyttäjä);
   }
   
+ /* 
+  * Silo-tyyppiset laitteet eivät tarvitse run-metodia.
   public void run() {
     try{
       Thread.sleep(5000);
@@ -65,4 +75,5 @@ public class Silo extends Thread implements Serializable{
       e.printStackTrace();
     }
   }
+  */
 }

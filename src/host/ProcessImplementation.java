@@ -2,9 +2,6 @@
 package host;
 
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 /*
  * Et‰olion toteutus
@@ -23,26 +20,24 @@ public class ProcessImplementation implements Process {
  }
  
  //Poistin catch-lohkon. n‰in poikkeus nousee asiakkaalle asti
- public void reserve(Object laite, String laitteenNimi, String asiakas) throws RemoteException { 
+ public void reserve(String laitteenNimi, String asiakas) throws RemoteException { 
 
-	 System.out.println("Trying to reserve " + laitteenNimi + " for " + asiakas);
-     server.reserve(laite, laitteenNimi, asiakas);
+     server.reserve(laitteenNimi, asiakas);
 
  }
  
  //Poistin catch-lohkon. n‰in poikkeus nousee asiakkaalle asti
- public void start(Object laite, String laitteenNimi, String asiakas) throws RemoteException {
+ public void start(String laitteenNimi, String asiakas) throws RemoteException {
  
-	 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas);
-     server.start(laite, laitteenNimi, asiakas);
+     //Laitetaan testausta varten siiloihin vain 1000. Muuten kest‰‰ kauhean kauan
+	 server.start(laitteenNimi, asiakas, 1000);
    
  }
  
  //Poistin catch-lohkon. n‰in poikkeus nousee asiakkaalle asti
- public void start(Object laite, String laitteenNimi, String asiakas, int amount) throws RemoteException {
+ public void start(String laitteenNimi, String asiakas, int amount) throws RemoteException {
 
-		 System.out.println("Trying to start " + laitteenNimi + " for " + asiakas + ", amount: " + amount);
-	     server.start(laite, laitteenNimi, asiakas, amount);
+	     server.start(laitteenNimi, asiakas, amount);
 	
  }
  
@@ -50,8 +45,8 @@ public class ProcessImplementation implements Process {
 	 return server.getState();
  }
  
- public void ping(){
-  System.out.println("RMI toimii!");
+ public boolean login(String name) throws RemoteException{
+	 return server.login(name);
  }
 
 }

@@ -7,9 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class Main {
 
     public static void main(String[] args) {
-        /*  if (System.getSecurityManager() == null) {
-             System.setSecurityManager(new SecurityManager());
-          }*/
+         //if (System.getSecurityManager() == null)  System.setSecurityManager(new SecurityManager());
            try {
                Process process = new ProcessImplementation(new ProcessServer());
                Process stub =

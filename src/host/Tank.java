@@ -4,28 +4,36 @@ package host;
 import java.io.Serializable;
 
 public class Tank extends Thread implements Serializable{
+  /*
+   * Luokan Tank parametrit:
+   * varattu: Ilmaisee, onko kyseessä oleva laite varattu. (true = varattu, false = vapaa)
+   * tilavuus: Ilmaisee, kuinka paljon nestettä laitteessa on litroissa. (max. 10000 l)
+   * käyttäjä: Ilmaisee laitteen senhetkisen käyttäjän.
+   */
   private boolean varattu;
-  private String juomanNimi;
-  private int tilavuus; // litraa, max. 10000 l
+  private int tilavuus; 
   private String käyttäjä;
   
+  /*
+   * Luokan Tank konstruktori:
+   * Määrittää laitteen aloitusarvot (oletuksena tyhjä).
+   */
   public Tank() {
     varattu = false;
     tilavuus = 0;
+    käyttäjä = "";
+
   }
   
+  /*
+   * Luokan Tank getterit ja setterit:
+   * HUOM! tilavuus-parametrin set-metodi ollaan korvattu lisää- ja vähennä-metodilla.
+   */
   protected boolean getVarattu() {
     return varattu;
   }
   protected void setVarattu(boolean varattu) {
     this.varattu = varattu;
-  }
-  
-  protected String getNimi() {
-    return juomanNimi;
-  }
-  protected void setNimi(String juomanNimi) {
-    this.juomanNimi = juomanNimi;
   }
   
   protected int getTilavuus() {
@@ -44,6 +52,7 @@ public class Tank extends Thread implements Serializable{
   protected boolean vähennä(int juoma) {
     if (this.tilavuus - juoma >= 0) {
       this.tilavuus -= juoma;
+      System.out.println("Pumping from tank: " + juoma);
       return true;
     }
     else {
@@ -56,8 +65,12 @@ public class Tank extends Thread implements Serializable{
   }
   protected void setKäyttäjä(String käyttäjä) {
     this.käyttäjä = käyttäjä;
+    if(!käyttäjä.equals("")) System.out.println("Tank reserved for " + käyttäjä);
+    else System.out.println("Tank freed up");
   }
   
+  /* 
+  * Tank-tyyppiset laitteet eivät tarvitse run-metodia.
   public void run() {
     try{
       Thread.sleep(5000);
@@ -66,4 +79,5 @@ public class Tank extends Thread implements Serializable{
       e.printStackTrace();
     }
   }
+  */
 }
